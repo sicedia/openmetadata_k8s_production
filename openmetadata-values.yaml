@@ -1,0 +1,27 @@
+global:
+  image:
+    tag: 1.8.7
+
+openmetadata:
+  resources:
+    requests:
+      cpu: 1
+      memory: 3Gi
+    limits:
+      cpu: 2
+      memory: 4Gi
+  ingress:
+    enabled: true
+    className: public  # the class created by microk8s’ nginx ingress
+    hosts:
+      - host: metadata.mycorp.io        # <-- change to your FQDN
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: openmetadata-cert
+        hosts:
+          - metadata.mycorp.io
+  persistence:
+    size: 5Gi
+    storageClass: microk8s-hostpath

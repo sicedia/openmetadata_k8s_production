@@ -1,0 +1,40 @@
+global:
+  image:
+    tag: 1.8.7
+
+mysql:
+  primary:
+    resources:
+      requests:
+        cpu: 2
+        memory: 4Gi
+      limits:
+        cpu: 3
+        memory: 6Gi
+    persistence:
+      size: 30Gi
+      storageClass: microk8s-hostpath
+
+opensearch:
+  resources:
+    requests:
+      cpu: 2
+      memory: 6Gi
+    limits:
+      cpu: 3
+      memory: 8Gi
+  persistence:
+    size: 30Gi
+    storageClass: microk8s-hostpath
+
+airflow:
+  resources:
+    requests:
+      cpu: 1
+      memory: 2Gi
+    limits:
+      cpu: 1
+      memory: 3Gi
+  persistence:
+    size: 10Gi
+    storageClass: microk8s-hostpath
